@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthAdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AppointmentAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth', 'role:1']], function(){
-
+Route::group(['middleware' => ['auth', 'role:admin']], function(){
+    Route::get('/admin/appointment', [AppointmentController::class, 'index']);
+    
+    Route::get('/admin/appointment/{appointment:id}', [AuthController::class, 'index']);
+    Route::put('/admin/appointment', [AuthController::class, 'index']);
 });
 
-Route::get('/admin/login', [AuthAdminController::class, 'index']);
+Route::get('/admin/login', [AuthController::class, 'index']);
+Route::post('/admin/login', [AuthController::class, 'store']);
+
+
 
 Route::get('/', function () {
     return view('user.index');
