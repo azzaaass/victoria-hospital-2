@@ -14,7 +14,7 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::with(['user', 'doctor.user', 'plan'])->get();
-        return view('doctor.appointment', [
+        return view('admin.appointment.index', [
             'title' => 'Victoria | Appointment',
             'page' => 'appointment',
             'appointments' => $appointments

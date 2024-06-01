@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Medichine extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function medichineCategory()
+    {
+        return $this->belongsTo(MedichineCategory::class, 'id_category');
+    }
 }
