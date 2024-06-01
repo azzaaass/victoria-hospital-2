@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
+use App\Models\Doctor;
 
 class AppointmentController extends Controller
 {
@@ -24,9 +25,12 @@ class AppointmentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Doctor $doctor)
     {
-        //
+        $doctor = Doctor::with(['user', 'specialis'])->where('id', $doctor->id)->first();
+        return view('user.appointment.create',[
+            'doctor' => $doctor
+        ]);
     }
 
     /**

@@ -6,72 +6,14 @@
         <div class="doctors">
             <h1 class="heading">our <span>doctors</span></h1>
             <div class="box-container">
-                <div class="box">
-                    <img src="../image/doc-1.jpg" alt="">
-                    <h3>dr. Deirdre Roulina, Sp.JP</h3>
-                    <p>specialist heart <br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-7.jpg" alt="">
-                    <h3>dr. Nur Kumala, Sp.A</h3>
-                    <p>Pediatrician<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-8.jpg" alt="">
-                    <h3> dr. Wijaya Kusuma, Sp.S</h3>
-                    <p>neurologist <br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-4.jpg" alt="">
-                    <h3>dr. Surya, Sp.THT-KL</h3>
-                    <p>ENT specialist<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-5.jpg" alt="">
-                    <h3>dr. Kevin, Sp.M</h3>
-                    <p>ophthalmologist.<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-9.jpg" alt="">
-                    <h3>dr. Chrisna Putri, Sp.KK</h3>
-                    <p>dermatologist<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-8.jpg" alt="">
-                    <h3>dr. Helita Juliet</h3>
-                    <p>General Practitioner (GP)<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-10.jpg" alt="">
-                    <h3>dr. Reisya Nasywa, Sp.OG</h3>
-                    <p>Obgyn<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-11.jpg" alt="">
-                    <h3>dr. Dewi Susanti</h3>
-                    <p>General Practitioner (GP)<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-12.jpg" alt="">
-                    <h3>dr. Irfan Setiawan, Sp.OT</h3>
-                    <p>orthopedic surgeon<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
-                <div class="box">
-                    <img src="../image/doc-13.jpg" alt="">
-                    <h3>dr. Ali Assagaf, Sp.P(K)</h3>
-                    <p>pulmonologistr<br></p>
-                    <a href="appointment.html" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
-                </div>
+                @foreach ($doctors as $doctor)
+                    <div class="box">
+                        <img src="../image/doc-1.jpg" alt="">
+                        <h3>{{ $doctor->user->fullname }}</h3>
+                        <p> {{ $doctor->specialis->name }} <br></p>
+                        <a href="/appointment/create/{{ $doctor->id }}" class="btn"> Appointment <span class="fas fa-chevron-right"></span> </a>
+                    </div>
+                @endforeach
             </div>
         </div>
 

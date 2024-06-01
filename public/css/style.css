@@ -360,7 +360,7 @@ h2 {
     margin-right: 10px; 
 }
 
-p {
+p, label {
     color: #444; 
     font-size: large;
     text-align: left; 
@@ -368,6 +368,10 @@ p {
 }
 /* Facilities section End */
     
+label {
+    float: left;
+}
+
 /* About section Start */
 .about .row{
     padding-top: 8rem;

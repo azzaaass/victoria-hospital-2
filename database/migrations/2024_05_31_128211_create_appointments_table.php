@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('no_appointment');
             $table->string('id_user');
             $table->string('id_doctor');
-            $table->string('id_plan');
+            $table->foreignId('id_plan')->references('id')->on('plans');
             $table->string('date');
             $table->string('status');
             $table->string('description');

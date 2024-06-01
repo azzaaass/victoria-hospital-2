@@ -19,7 +19,7 @@
                         class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for items">
                 </div>
-                <a href="/admin/create/news"><button type="button"
+                <a href="/doctor/create/plan"><button type="button"
                         class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">+
                         Add</button></a>
             </div>
@@ -41,10 +41,10 @@
                         Doctor
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Hour
+                        Day
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Day
+                        Hour
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -70,16 +70,16 @@
                             {{ $plan->doctor->user->username }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $days[$plan->hour] }}
+                            {{ $days[$plan->day] }}
                         </td>
                         <td class="px-6 py-4">
-                            Rp{{ $plan->day }}
+                            {{ $hours[$plan->hour] }}
                         </td>
                         <td class="px-6 py-4 flex gap-4">
-                            <a href="/admin/plan/{{ $plan->id }}"
+                            <a href="/doctor/plan/{{ $plan->id }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <button id="trigger-modal" onclick="urlModalHandler(this)"
-                                data-id-target="{{ route('admin.plan.destroy', $plan->id) }}"
+                                data-id-target="{{ route('doctor.plan.destroy', $plan->id) }}"
                                 data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
                                 class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
                         </td>

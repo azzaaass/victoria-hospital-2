@@ -12,8 +12,8 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('auth.adminAuth',[
-            'title' => 'Victoria | Login admin'
+        return view('auth.auth',[
+            'title' => 'Victoria | Login'
         ]);
     }
 
@@ -35,6 +35,8 @@ class AuthController extends Controller
             if (Auth::user()->role == "doctor") {
                 // doctor
                 return redirect('/doctor/appointment');
+            } else {
+                return redirect('/');
             }
         } else {
             return redirect('/admin/login')->with('error', 'Username atau password salah');
@@ -44,6 +46,6 @@ class AuthController extends Controller
     public function destroy()
     {
         Auth::logout();
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }
