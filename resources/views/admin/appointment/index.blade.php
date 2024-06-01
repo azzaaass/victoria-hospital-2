@@ -31,7 +31,7 @@
                         No. Appointment
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        User
+                        Patient
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Doctor
@@ -40,7 +40,10 @@
                         Status
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Description
+                        Plan
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Date
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -69,7 +72,13 @@
                             {{ $appointment->doctor->user->username }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $appointment->plan->id }}
+                            {{ $appointment->status }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $appointment->plan->hour }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $appointment->date }}
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

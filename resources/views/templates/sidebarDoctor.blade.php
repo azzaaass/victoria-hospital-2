@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title }} (Admin)</title>
+    <title>{{ $title }} (Doctor)</title>
     {{-- TAILWIND --}}
     <script src="https://cdn.tailwindcss.com"></script>
     {{-- FONTAWESOME --}}
@@ -39,7 +39,7 @@
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/admin/appointment"
+                    <a href="/doctor/appointment"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i
                             class="{{ $page == 'appointment' ? 'text-gray-900 ' : 'text-gray-500 ' }} text-xl transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-hand"></i>
@@ -55,31 +55,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/medichine"
+                    <a href="/doctor/plan"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i
-                            class="{{ $page == 'medichine' ? 'text-gray-900 ' : 'text-gray-500 ' }} text-xl transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-briefcase-medical"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Medichines</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/news"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i
-                            class="{{ $page == 'news' ? 'text-gray-900 ' : 'text-gray-500 ' }}text-xl transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-newspaper"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">News</span>
+                            class="{{ $page == 'plan' ? 'text-gray-900 ' : 'text-gray-500 ' }} text-xl transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-calendar-days"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Plan</span>
                     </a>
                 </li>
                 <li>
                     <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i
-                            class="{{ $page == 'reviews' ? 'text-gray-900 ' : 'text-gray-500 ' }}text-xl transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white fa-solid fa-star"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Reviews</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/logout"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">

@@ -34,10 +34,16 @@ class AuthController extends Controller
             } else 
             if (Auth::user()->role == "doctor") {
                 // doctor
-                return redirect('/pic/surats');
+                return redirect('/doctor/appointment');
             }
         } else {
             return redirect('/admin/login')->with('error', 'Username atau password salah');
         }
+    }
+    
+    public function destroy()
+    {
+        Auth::logout();
+        return redirect('/admin/login');
     }
 }

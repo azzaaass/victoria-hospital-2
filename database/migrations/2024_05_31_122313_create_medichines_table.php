@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('medichines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_category')->references('id')->on('medichines_categories');
+            $table->foreignId('id_category')->references('id')->on('medichine_categories');
             $table->string('name');
             $table->string('price');
-            $table->string('decription');
+            $table->text('description');
             $table->timestamps();
         });
     }

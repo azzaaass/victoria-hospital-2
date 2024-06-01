@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MedichinesCategory;
+use App\Models\MedichineCategory;
 use App\Http\Requests\StoreMedichinesCategoryRequest;
 use App\Http\Requests\UpdateMedichinesCategoryRequest;
 
-class MedichinesCategoryController extends Controller
+class MedichineCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class MedichinesCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MedichinesCategory $medichinesCategory)
+    public function show(MedichineCategory $medichinesCategory)
     {
         //
     }
@@ -43,7 +43,7 @@ class MedichinesCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MedichinesCategory $medichinesCategory)
+    public function edit(MedichineCategory $medichinesCategory)
     {
         //
     }
@@ -51,7 +51,7 @@ class MedichinesCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMedichinesCategoryRequest $request, MedichinesCategory $medichinesCategory)
+    public function update(UpdateMedichinesCategoryRequest $request, MedichineCategory $medichinesCategory)
     {
         //
     }
@@ -59,7 +59,7 @@ class MedichinesCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MedichinesCategory $medichinesCategory)
+    public function destroy(MedichineCategory $medichinesCategory)
     {
         //
     }

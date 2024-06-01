@@ -13,7 +13,13 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::with('doctor.user')->paginate(10);
+        
+        return view('doctor.plan.index',[
+            'title' => 'Victoria | Plan',
+            'page' => 'plan',
+            'plans' => $plans
+        ]);
     }
 
     /**
