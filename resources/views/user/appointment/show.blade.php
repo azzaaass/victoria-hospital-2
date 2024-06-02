@@ -3,6 +3,8 @@
 @section('style')
     {{-- TAILWIND --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    {{-- JQUERY --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         {
             font-family: Arial,
@@ -146,113 +148,89 @@
     <!-- Profile Page Content -->
     <div class="pt-36 flex gap-5 justify-center">
         <div class="container w-[25%]">
-            <form class="profile-info" id="profileForm" action="/profile/{{ Auth::user()->id }}" method="post"
+            <form class="profile-info" id="profileForm" action="/profile/appointment/{{ $appointment->id }}" method="post"
                 enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-                <div class="profile-header">
-                    <div class="profile-image" onclick="document.getElementById('profileImageInput').click();">
-                        @if (isset(Auth::user()->photo_path))
-                            <img id="profileImage" style="display: block;"
-                                src="{{ asset('storage/user/' . Auth::user()->id . '/' . Auth::user()->photo_path) }}"
-                                alt="{{ Auth::user()->photo_path }}">
-                            <input type="file" id="profileImageInput" name="photo" style="display: none;">
-                        @else
-                            <input type="file" id="profileImageInput" name="photo" style="display: none;">
-                            <span class="placeholder">+</span>
-                        @endif
-                    </div>
-                </div>
-                {{-- <img id="profileImage" class="rounded-full w-52 object-cover" src="{{ asset('storage/user/' . Auth::user()->id . '/' . Auth::user()->photo_path) }}" alt=""> --}}
                 <ul>
                     <li class="form-group">
-                        <label for="username" style="font-size: 18px;">Username</label>
+                        <label for="no_appointment" style="font-size: 18px;">No. Appointment</label>
                         <div class="input-group">
-                            <input type="text" class="text-2xl" id="username" name="username"
-                                placeholder="Enter your username" value="{{ Auth::user()->username }}">
+                            <input type="text" class="text-2xl" id="no_appointment" name="no_appointment" disabled
+                                placeholder="Enter your no_appointment" value="{{ $appointment->no_appointment }}">
                             <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
                         </div>
                     </li>
                     <li class="form-group">
-                        <label for="fullname" style="font-size: 18px;">Full Name</label>
+                        <label for="doctor" style="font-size: 18px;">Doctor</label>
                         <div class="input-group">
-                            <input type="text" class="text-2xl" name="fullname" id="fullname"
-                                placeholder="Enter your full name" value="{{ Auth::user()->fullname }}">
+                            <input type="text" class="text-2xl" name="doctor" id="doctor" disabled
+                                placeholder="Enter your full name" value="{{ $appointment->doctor->user->username }}">
                             <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
                         </div>
                     </li>
                     <li class="form-group">
-                        <label for="telephone" style="font-size: 18px;">Telephone</label>
+                        <label for="telephone" style="font-size: 18px;">Telephone *</label>
                         <div class="input-group">
                             <input type="tel" class="text-2xl" name="telephone" id="telephone"
-                                placeholder="Enter your telephone number" value="{{ Auth::user()->telephone }}">
+                                placeholder="Enter your telephone number" value="{{ $appointment->telephone }}">
                             <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
                         </div>
                     </li>
                     <li class="form-group">
-                        <label for="nik" style="font-size: 18px;">NIK</label>
+                        <label for="date" style="font-size: 18px;">Date</label>
                         <div class="input-group">
-                            <input type="text" class="text-2xl" name="nik" id="nik"
-                                placeholder="Enter your NIK" value="{{ Auth::user()->nik }}">
+                            <input type="text" class="text-2xl" name="date" id="date" disabled
+                                value="{{ Carbon::parse($appointment->date)->translatedFormat('d F Y') }}">
                             <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
                         </div>
                     </li>
                     <li class="form-group">
-                        <label for="email" style="font-size: 18px;">Email</label>
+                        <label for="description">disease complaint *</label>
                         <div class="input-group">
-                            <input type="email" class="text-2xl" name="email" id="email"
-                                placeholder="Enter your email" value="{{ Auth::user()->email }}">
+                            <textarea name="description" id="description"
+                                class="box w-[92%] px-2 py-5 border-gray-400 border rounded-lg mt-2 text-2xl" rows="1"
+                                style="resize: vertical">{{ $appointment->description }}</textarea>
                             <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
                         </div>
                     </li>
+                    <li class="form-group">
+                        <label for="date" style="font-size: 18px;">Payment status</label>
+                        <div class="input-group">
+                            <input type="text" class="text-2xl" name="date" id="date" disabled
+                                value="{{ $status_payment[$appointment->status_payment] }}">
+                            <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
+                        </div>
+                    </li>
+                    @if (isset($appointment->payment_photo_path))
+                        <li class="form-group" style="display: block;">
+                            <label for="payment_photo_path" style="font-size: 18px;">Payment Image</label>
+                            <div class="input-group">
+                                <img src="{{ asset('storage/appointments/' . $appointment->payment_photo_path) }}"
+                                    alt="{{ $appointment->payment_photo_path }}" class="object-cover w-full">
+                            </div>
+                        </li>
+                        <li class="form-group" style="display: block;">
+                            <label for="photo" style="font-size: 18px;">Edit photo payment</label>
+                            <div class="input-group">
+                                <input type="file" class="text-2xl" name="photo" id="photo"
+                                    value="{{ $status_payment[$appointment->status_payment] }}">
+                                <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
+                            </div>
+                        </li>
+                    @else
+                        <li class="form-group" style="display: block;">
+                            <label for="photo" style="font-size: 18px;">Upload payment</label>
+                            <div class="input-group">
+                                <input type="file" class="text-2xl" name="photo" id="photo"
+                                    value="{{ $status_payment[$appointment->status_payment] }}">
+                                <i class="edit-icon" style="font-size: 20px; vertical-align: middle;">✎</i>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
                 <button class="save-button" type="submit">Save</button>
-                <br>
-                <a class="save-button" href="/logout">Logout</a>
             </form>
         </div>
-        <div class="schedule bg-white container w-[65%]">
-            <h1 class="heading">My <span>Appointment</span></h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>No. Appointment</th>
-                        <th>Doctor</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Status Pay</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($appointments as $appointment)
-                        <tr>
-                            <td>{{ $appointment->no_appointment }}</td>
-                            <td>{{ $appointment->doctor->user->username }} ({{ $appointment->doctor->specialis->name }})
-                            </td>
-                            <td>{{ Carbon::parse($appointment->date)->translatedFormat('d F Y') }}</td>
-                            <td>{{ $hours[$appointment->plan->hour] }}</td>
-                            <td>{{ $status[$appointment->status] }}</td>
-                            <td>{{ $status_payment[$appointment->status_payment] }}</td>
-                            <td><a href="/profile/appointment/{{ $appointment->id }}" style="font-weight: 700">Detail</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
     </div>
-    <script>
-        function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                const output = document.getElementById('profileImage');
-                output.src = reader.result;
-                // output.style.display = 'block'; // Display the image
-                // document.querySelector('.profile-image .placeholder').style.display = 'none'; // Hide the placeholder "+"
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
 @endsection

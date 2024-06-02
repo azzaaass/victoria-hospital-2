@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -12,8 +14,8 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('auth.adminAuth',[
-            'title' => 'Victoria | Login admin'
+        return view('auth.login',[
+            'title' => 'Victoria | Login'
         ]);
     }
 
@@ -35,15 +37,34 @@ class AuthController extends Controller
             if (Auth::user()->role == "doctor") {
                 // doctor
                 return redirect('/doctor/appointment');
+            } else {
+                return redirect('/');
             }
         } else {
             return redirect('/admin/login')->with('error', 'Username atau password salah');
         }
     }
     
+    public function register(Request $request)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|string|unique:users,username',
+            'password' => 'required|string|min:8',
+        ]);
+
+        $user = User::create([
+            'username' => $validatedData['username'],
+            'password' => Hash::make($validatedData['password']),
+            'role' => 'user'
+        ]);
+
+        Auth::login($user);
+        return redirect('/');
+    }
+
     public function destroy()
     {
         Auth::logout();
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }

@@ -16,8 +16,5 @@ class AdminSeeder extends Seeder
         DB::table('admins')->insert([
             'id_user' => '1'
         ]);
-        DB::table('admins')->insert([
-            'id_user' => '2'
-        ]);
     }
 }

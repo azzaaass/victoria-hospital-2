@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(MedichineCategorySeeder::class);
         $this->call(MedichineSeeder::class);
+
+        $this->call(NewsSeeder::class);
     }
 }

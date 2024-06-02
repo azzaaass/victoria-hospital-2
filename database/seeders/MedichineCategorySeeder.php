@@ -16,5 +16,11 @@ class MedichineCategorySeeder extends Seeder
         DB::table('medichine_categories')->insert([
             'name' => 'Antihistamine',
         ]);
+        DB::table('medichine_categories')->insert([
+            'name' => 'Simple non-opioid analgesics',
+        ]);
+        DB::table('medichine_categories')->insert([
+            'name' => 'Compound analgesics',
+        ]);
     }
 }

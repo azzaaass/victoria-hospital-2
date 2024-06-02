@@ -1,4 +1,4 @@
-@extends('templates.sidebarAdmin')
+@extends('templates.sidebarDoctor')
 
 @section('container')
     @php
@@ -68,7 +68,6 @@
                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                         </div>
                     </td>
-                    {{-- @dd($appointment) --}}
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $appointment->no_appointment }}
                     </th>
@@ -92,10 +91,10 @@
                     </td>
                     <td class="px-6 py-4">
                         @if ($page == 'appointment')
-                            <a href="/admin/appointment/{{ $appointment->id }}"
+                            <a href="/doctor/appointment/{{ $appointment->id }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">preview</a>
                         @else
-                            <a href="/admin/history/{{ $appointment->id }}"
+                            <a href="/doctor/history/{{ $appointment->id }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">preview</a>
                         @endif
                     </td>

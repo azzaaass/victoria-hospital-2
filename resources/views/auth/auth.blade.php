@@ -22,7 +22,7 @@
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded shadow-md w-96">
-        <h2 class="text-2xl font-semibold mb-6">Login Admin</h2>
+        <h2 class="text-2xl font-semibold mb-6">Login</h2>
         @if ($errors->any())
             <div class="mb-4">
                 <div class="font-medium text-red-600">{{ __('Whoops! Something went wrong.') }}</div>
@@ -34,7 +34,7 @@
                 </ul>
             </div>
         @endif
-        <form action="/admin/login" method="POST">
+        <form action="/login" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>

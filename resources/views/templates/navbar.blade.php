@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <!-- Custom Css File Link -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+    {{-- JQUERY --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!---->
     <style>
         button {
@@ -50,16 +51,27 @@
             <a href="/doctor">doctors</a>
             <a href="/pharmacy">pharmacy</a>
             <a href="/location">location</a>
-            <a href="/profile"><i class="fas fa-user"></i></a>
+            @if (isset(Auth::user()->role))
+                @if (Auth::user()->role == 'doctor')
+                    <a href="/doctor/appointment" style="font-weight: 800">Doctor page</a>
+                @endif
+            @endif
+            @php
+                if (Auth::check()) {
+                    echo '<a href="/profile"><i class="fas fa-user"></i></a>';
+                } else {
+                    echo '<a href="/login" style="color:#205b48; font-weight: 800">Login Here</a>';
+                }
+            @endphp
         </nav>
-        <div id="menu-btn" class="fas fa-bars"></div>~
+        <div id="menu-btn" class="fas fa-bars"></div>
     </div>
     <!-- Header Section End -->
 
     @yield('container')
 
-     <!-- Footer section Starts  -->
-     <section class="footer">
+    <!-- Footer section Starts  -->
+    <section class="footer">
         <div class="box-container">
             <div class="box">
                 <h3>our services</h3>
