@@ -13,9 +13,29 @@ class PlanApiController extends Controller
         try {
             $doctor = $request->header('doctor');
             $day = $request->header('day');
-            
+            $appointment = $request->header('appointment');
+
             $plan = Plan::query();
-            $plan = $plan->doesntHave('appointment');
+            if (isset($appointment)) {
+                if ($appointment == '0') {
+                    $plan = $plan->whereDoesntHave('appointment', function ($query){
+                        $query->where('status', '0');
+                    });
+                } else {
+                    $plan = $plan->whereHas('appointment', function ($query){
+                        $query->where('status', '0');
+                    });
+                }
+            }
+
+            // $plan = Plan::query();
+            // if (isset($appointment)) {
+            //     if ($appointment == '0') {
+            //         $plan = $plan->doesntHave('appointment');
+            //     } else {
+            //         $plan = $plan->has('appointment');
+            //     }
+            // }
 
             if (isset($doctor)) {
                 $plan = $plan->where('id_doctor', $doctor);

@@ -32,4 +32,14 @@ return [
         '20:00 - 20:30',
         '20:30 - 21:00'
     ],
+    'status' => [
+        'wait',
+        'rejected',
+        'done'
+    ],
+    'status_payment' => [
+        'wait',
+        'success',
+        'error'
+    ]
 ];

@@ -51,8 +51,13 @@
             <a href="/doctor">doctors</a>
             <a href="/pharmacy">pharmacy</a>
             <a href="/location">location</a>
+            @if (isset(Auth::user()->role))
+                @if (Auth::user()->role == 'doctor')
+                    <a href="/doctor/appointment" style="font-weight: 800">Doctor page</a>
+                @endif
+            @endif
             @php
-                if(Auth::check()){
+                if (Auth::check()) {
                     echo '<a href="/profile"><i class="fas fa-user"></i></a>';
                 } else {
                     echo '<a href="/login" style="color:#205b48; font-weight: 800">Login Here</a>';

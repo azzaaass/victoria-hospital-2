@@ -26,7 +26,6 @@ class PlanController extends Controller
                 ->paginate(10);
         } else {
             $plans = Plan::with('doctor.user')
-                ->doesntHave('appointment')
                 ->where('id_doctor', $doctor->id)
                 ->orderBy('day', 'asc')
                 ->orderBy('hour', 'asc')

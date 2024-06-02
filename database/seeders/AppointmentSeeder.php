@@ -18,7 +18,9 @@ class AppointmentSeeder extends Seeder
             'id_user' => '4',
             'id_doctor' => '2',
             'id_plan' => '1',
+            'telephone' => '083192',
             'status' => '0',
+            'status_payment' => '0',
             'date' => '2024-05-16',
             'description' => 'Saya sakit pusing kepala'
         ]);

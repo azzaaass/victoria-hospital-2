@@ -7,24 +7,25 @@
             <div class="image">
                 <img src="{{ asset('images/appointment.svg') }}" alt="">
             </div>
-            <form>
-
-                <input type="text" name="id_user" value="{{ Auth::user()->id }}" hidden>
-                <input type="text" id="day" name="day">
+            <form action="/appointment" method="post">
+                @csrf
+                <input type="text" id="id_doctor" name="id_doctor" value="{{ $doctor->id }}" hidden>
+                <input type="text" id="day" name="day" hidden>
 
                 <h3>book appointment</h3>
                 <label for="name">Full name</label>
                 <input type="text" placeholder="your name" class="box">
 
-                <label for="number">Phone number</label>
-                <input type="number" placeholder="phone number" class="box">
-
+                <label for="telephone">Phone number</label>
+                <input type="telephone" name="telephone" placeholder="phone number" class="box">
+                
                 <label>Doctor & Specialist</label>
                 <input type="text" class="box"
-                    value="Doctor {{ $doctor->user->fullname }} | Specialis {{ $doctor->specialis->name }}" readonly>
+                value="Doctor {{ $doctor->user->fullname }} | Specialis {{ $doctor->specialis->name }}" readonly>
 
                 <label for="date">Select date</label>
-                <input type="date" id="date" class="box" onclick="getPlan(this,{{ $doctor->id }})">
+                <input type="date" id="date" name="date" class="box"
+                    onchange="getPlan(this,{{ $doctor->id }})">
 
                 <label for="id_plan">Select schedule</label>
                 <select name="id_plan" id="id_plan" class="box">
@@ -86,12 +87,30 @@
                 headers: {
                     "doctor": idDoctor,
                     "day": day,
+                    "appointment": "0"
                 },
                 success: function(response) {
                     $.each(response.plans, function(key, value) {
                         $("#id_plan").append("<option value='" +
                             value.id + "'>" + hours[value.hour] +
                             "</option>");
+                    });
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:8000/api/plan",
+                dataType: "json",
+                headers: {
+                    "doctor": idDoctor,
+                    "day": day,
+                    "appointment": "1"
+                },
+                success: function(response) {
+                    $.each(response.plans, function(key, value) {
+                        $("#id_plan").append("<option value='" +
+                            value.id + "' disabled >" + hours[value.hour] +
+                            " (sudah di pesan)</option>");
                     });
                 }
             });
