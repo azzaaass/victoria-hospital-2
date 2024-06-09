@@ -90,7 +90,7 @@
                     hospital to anyone in need of medical care.</p>
             </div>
             <div class="box">
-                <img src="../image/pic-2.png" alt="">
+                <img src="{{ asset('images/pic-2.png') }}" alt="">
                 <h3>Roseanne Park</h3>
                 <p class="text">Overall, my visit to this hospital was satisfactory. The medical staff were knowledgeable
                     and efficient in their care. However, I did encounter some delays in receiving certain services. Despite
@@ -98,7 +98,7 @@
                     consider returning to this hospital for any future medical needs.</p>
             </div>
             <div class="box">
-                <img src="../image/pic-3.png" alt="">
+                <img src="{{ asset('images/pic-3.png') }}" alt="">
                 <h3>Tom Holland</h3>
                 <p class="text">The medical team went above and beyond to ensure my comfort and well-being. They took the
                     time to explain my treatment plan thoroughly and addressed all of my concerns with patience and empathy.

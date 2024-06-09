@@ -29,6 +29,7 @@ class UserController extends Controller
     {
         return view('user.information');
     }
+
     public function doctor()
     {
         $doctors = Doctor::with(['user', 'specialis'])->get();
